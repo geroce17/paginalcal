@@ -1,5 +1,13 @@
+#headerID{
+    background-color: #4d4d4d
+}
+
 .fondoP{
     border: 2px solid black;
+}
+
+#SubText{
+    text-align: center;
 }
 
 .nopadding{
@@ -9,10 +17,66 @@
 
 #headerText{
     text-align: center;
+    color: white;
+    font-size: 40px;
+    font-family: inconsolata-bold;
 }
 
 #botonForm{
     margin-top: 10px;
     margin-bottom: 5px;
-    background-color: darkseagreen;
+    background-color: green;
+    font-family: inconsolata-bold;
+    font-size: 18px;
+    color: white;
+}
+
+.background{
+    /*background-image: url(../img//eva3.jpg);*/
+    background-color: #CDEAFA;
+}
+
+#mensajeError{
+    display:none;
+    color: red;
+}
+
+#bottoncol{
+    text-align: center
+}
+
+.sub{
+    text-align: center;
+}
+
+#imgIMC{
+    margin: auto;
+    box-shadow: 5px 2px 15px #999;
+}
+
+
+
+@media screen and (max-width: 480px) {
+    #divImgImc{
+        display: none;
+    }
+    
+    #bottoncol{
+        padding: 0px !important;
+        margin:  0px !important;
+    }
+}
+
+@font-face {
+   font-family: "inconsolata-regular";
+   font-style: normal;
+   font-weight: normal;
+   src: url(../fonts/Inconsolata/Inconsolata-Regular.ttf);
+}
+
+@font-face {
+   font-family: "inconsolata-bold";
+   font-style: normal;
+   font-weight: normal;
+   src: url(../fonts/Inconsolata/Inconsolata-Bold.ttf);
 }

@@ -7,32 +7,40 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="background">
 
 <section class="container-fluid">
-    <header class="row">
-        <h2 id="headerText">PAGINACAL</h2>
+    <header id="headerID" class="row">
+        <h2 id="headerText">Calcula tu indice de masa corporal</h2>
     </header>
 </section>
 
 <div class="container">
 <section>
-    <div class="row">
+    <div class="row sub">
         <h3 class="">Bienvenidos</h3>
     </div>
-    
+    <section id="divIMC" class="col-md-6">
     <div class="form-group">
-     <h4>Para calcular su masa corporal por favor introduzca los siguientes valores:</h4>
+     <h4 id="SubText">Para calcular su masa corporal por favor introduzca los siguientes valores:</h4>
       <label for="usr">Peso (en kilogramos):</label>
       <input type="text" class="form-control" id="txtPeso">
       <label for="usr">Estatura (en metros):</label>
       <input type="text" class="form-control" id="txtEstatura">
       <div class="col-md-12">
-      <div class="col-md-offset-4 col-md-4"><input onclick="calculaIMC()" type="submit" value="Calcular" class="form-control" id="botonForm"></div>
+      <div id="bottoncol" class="col-sm-offset-3 col-sm-6">
+          <input onclick="calculaIMC()" type="submit" value="Calcular" class="form-control" id="botonForm">
+          <label id="mensajeError" for="usr">Por favor llene correctamente todos los campos</label>
+      </div>
       </div>
       <label for="usr">Su Indice de Masa Corporal es:</label>
       <input type="text" class="form-control" id="txtIMC" readonly>
     </div>
+    </section>
+    
+    <section id="divImgImc" class="col-md-6">
+        <img id="imgIMC" class="img-responsive" src="img/image001.png" alt="ImcImage">
+    </section>
 </section>
 
 </div>
@@ -42,11 +50,72 @@
 
 <script>
     function calculaIMC(){
-        var peso = document.getElementById("txtPeso").value;
-        var estatura = document.getElementById("txtEstatura").value;
-        var IMC = peso/Math.pow(estatura,2);
-        document.getElementById("txtIMC").value= IMC.toFixed(2);
+        var peso = document.getElementById("txtPeso");
+        var estatura = document.getElementById("txtEstatura");
+        
+        var p = peso.value.match(/^\d{1,2}\.\d{1,}/);
+        var e = estatura.value.match(/^\d{1}\.\d{1,}/);
+        
+        var res = /^\d{1,2}\.\d{1,}/.test(peso.value);
+        var res2 = /^\d{1}\.\d{1,}/.test(estatura.value);
+        
+        p = Number(p);
+        e = Number(e);
+        
+        if(res==true && res2 == true){
+            peso.value = p.toFixed(2);
+            estatura.value = e.toFixed(2);
+            document.getElementById("mensajeError").style.display = "none";
+            var IMC = p/Math.pow(e,2);
+            document.getElementById("txtIMC").value= IMC.toFixed(2);
+        }
+        else{
+            peso.value="";
+            estatura.value="";
+            document.getElementById("txtIMC").value = "";
+            document.getElementById("mensajeError").style.display = "block";
+        }
+        
+        
+        /*if(/[\d{1}\.\d{2}]?/.test(peso.value) == true && /\d{1}\.\d{2}?/.test(estatura.value) == true)
+        {
+            var IMC = peso.value/Math.pow(estatura.value/100,2);
+            document.getElementById("mensajeError").style.display = "none";
+            document.getElementById("txtIMC").value= IMC.toFixed(2);
+        }
+        else
+        {
+            peso.value="";
+            estatura.value="";
+            document.getElementById("txtIMC").value = "";
+            document.getElementById("mensajeError").style.display = "block";
+        }*/
+        
+        //peso.value = delLet(peso);
+        //estatura.value = delLet(estatura);
+        
+        //var IMC = peso.value/Math.pow(estatura.value/100,2);
+        
+        /*if(Number.isNaN(IMC) || IMC==Number.POSITIVE_INFINITY || IMC <= 0)
+        {
+            peso.value="";
+            estatura.value="";
+            document.getElementById("txtIMC").value = "";
+            document.getElementById("mensajeError").style.display = "block";
+        }
+        else
+        {
+            document.getElementById("mensajeError").style.display = "none";
+            document.getElementById("txtIMC").value= IMC.toFixed(2);
+        }*/
     }
+        
+    
+    /*function delLet(input)
+    {
+        var reg = input.value.replace(/[^0-9]{2}/g,"");
+        return reg;
+    }*/
 </script>
 
 </body>
